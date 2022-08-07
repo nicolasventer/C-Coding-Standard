@@ -137,3 +137,10 @@ Rules that describe the way to name.
 All format rules to apply defined by [clang-format file](.clang-format).
 </details>
 <br>
+
+# Licence
+
+MIT Licence. See [LICENSE file](LICENSE).
+Please refer me with:
+
+	Copyright (c) Nicolas VENTER All rights reserved.
