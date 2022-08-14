@@ -42,7 +42,7 @@ Rules that describe the way to implement.
     - Include order
         In alphabetical order for each category:
         1. Corresponding header
-        2. Standard library
+        2. Standard library headers
         3. External depedencies headers
         4. Project headers
 - Variables
