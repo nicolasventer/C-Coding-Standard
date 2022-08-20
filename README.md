@@ -8,21 +8,24 @@ In order to reach this goal, the rules must be written so that **it reduces the 
 
 Rules that describe the way to implement.
 - General
-  - Friendship: **do not use**
+  - Friendship: **only when declaring operators** (i.e.` <`, `==`, `<<`, ...)
   - Shared pointers: **only for child classes of interfaces**
   - Dynamic allocation: **do not use** (i.e. no use of `new`)
   - Exceptions: **do not use**
-  - Cast: **use `static_cast`** if possible, else `reinterpret_cast`. **Do not use `dynamic_cast` or `C style cast`**
+  - Cast: if possible, **use `static_cast`**, else `reinterpret_cast`. **Do not use `dynamic_cast` or `C style cast`**
   - Comments for:
     - implicit required condition of well running
     - libraries
     - class, function or variable with names that cannot be explicit enough
-  - Macros: **do not use**
+  - Macros: **only when using `__FUNCTION__` or `__LINE__`**
   - Aliases: **use the `using` keyword instead of the `typedef` keyword and only for the function types**
   - Lambda: **use `std::function` as the type but declare it with a `lambda function`**
   - Inheritance: **do not use inheritance** except for interfaces. Use composition over inheritance instead
   - Dead code: **do not use** (no what-if code)
-  - Files: **only one class per file**
+  - Files: **only one class per file, except for header-only libraries**
+  - Libraries:
+    - if possible, **implement as header-only library**
+    - **split declarations and implementations**, place all declarations at first
 - Headers
   - Header inclusion: **no forward declaration**
   - Header guard: `#pragma once`
@@ -49,7 +52,7 @@ Rules that describe the way to implement.
   - Declaration
     - Instruction: **only one declaration per line**. This rule also applies for class members
     - Initialization: **if possible, initialize variable on declaration**. This rule also applies for class members
-  - Scope: **declare the variable only inside a method or a class**
+  - Scope: **declare the variable inside a method, a class, or a namespace**
   - Pointer/Reference: **use references instead of pointers when the value is not optionnal**, unless the object is contained in a data structure
   - Constness: **maximize the constness of variables**
   - Primitive type: **use only strong primitive types** *(ex: `uint32_t`, `double_t`)*
@@ -57,14 +60,14 @@ Rules that describe the way to implement.
   - `auto` keyword: **use only for lambda, loop-variable and types that are longer than 15 characters**
 - Functions
   - Inline functions: **use only trivial setters and getters**
-  - Side effect: **avoid side effect functions**
+  - Side effect: **avoid side effect functions**  
       Exception valid for: data structures, in-out parameters, multiple outputs
   - `Return` instruction: **immediately exit a function when a required condition is not fulfilled**
-    - Parameters
-      - Default value: **no default value**
-      - Passing: **pass primitive types by value, pass any other types by reference**
+  - Parameters
+    - Default value: **no default value**
+    - Passing: **pass primitive types by value, pass any other types by reference**
 - Structs
-  - Usage: use structs for **mainly public attributes and methods**
+  - Usage: use structs for **mainly public attributes and methods**  
     Other rules in `Classes`
 - Classes
   - Constructor: **do not use implicit conversions**, use the `explicit` keyword
@@ -73,9 +76,10 @@ Rules that describe the way to implement.
   - Accessibility: **minimize the accessibility of the class members**
   - Constness: **maximize the constness of the member functions**
   - Static: **static class implemented as singleton**, all static methods must call their corresponding private member method
+  - Singleton: **do not use singleton for libraries**, create an object named `instance` in a namespace named `_private`
 - Namespaces
-  - Usage: **no namespaces, use classes**, except for `from_string` and `to_string` for enumerators
-  - `using` instruction: **do not use the `using namespace` instruction**
+  - Usage: use namespaces **for libraries and for `from_string` and `to_string` of enumerators**
+  - `using` instruction: **`using namespace` instruction should be avoided** or used in a function scope or namespace scope (not in global scope)
 - Enumerators
   - Converters: **define `from_string` and `to_string` in the namespace correspoding to the enum**
 </details>
@@ -124,10 +128,12 @@ Rules that describe the way to name.
     - Order:
       1. Data involved *(ex: Car, Shoe, Key)* *(still no plural)*
       2. Data processing method *(ex: Watcher, Cleaner, Filter)*
-    - Extension: **the child class name must end with its parent class name**
-      Abbreviate the parent name if its length is greater than `15`
+    - Extension: **the child class name must end with its parent class name**  
+      Abbreviate the parent name if its length is greater than `15`  
       Add a comment just above the parent class to define the used abbreviation
     Other rules in `Types`
+- Namespaces
+  - Case: **snake_case**
 - Types
   - Case: **PascalCase**
 </details>
