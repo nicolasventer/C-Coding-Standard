@@ -1,7 +1,7 @@
 # Coding standard
 
-The most important coding rules goal is the **consistency of the code** *(i.e. no matter who writes the code)*.
-In order to reach this goal, the rules must be written so that **it reduces the number of ways to write the code**.
+The most important coding rules goal is the **consistency of the code** *(i.e. no matter who writes the code)*.  
+In order to reach this goal, the rules must be written so that **it reduces the number of ways to write the code**.  
 <b>However, they are not absolute. <u>Exceptions can be made if justified.</u></b>
 
 <details open><summary><font size="5" id="coding-rules">Coding rules</font></summary>
@@ -25,7 +25,7 @@ Rules that describe the way to implement.
   - Files: **only one class per file, except for header-only libraries**
   - Libraries:
     - if possible, **implement as header-only library**
-    - **split declarations and implementations**, place all declarations at first
+    - **split declarations and implementations**, place all declarations at first. No split for templated classes.
 - Headers
   - Header inclusion: **no forward declaration**
   - Header guard: `#pragma once`
