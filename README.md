@@ -17,7 +17,10 @@ Rules that describe the way to implement.
     - implicit required condition of well running
     - libraries
     - class, function or variable with names that cannot be explicit enough
-  - Macros: **only when using `__FUNCTION__` or `__LINE__`**
+  - Macros:
+    - **when using `__FUNCTION__` or `__LINE__`**
+    - **for callback declarations: 2 macros: `CALLBACK_PARAM` and `CALLBACK_LAMBDA(...) [__VA_ARGS__](CALLBACK_PARAM)`**  
+      *therefore, callback declaration is made with `CALLBACK_PARAM`*
   - Aliases: **use the `using` keyword instead of the `typedef` keyword and only for the function types**
   - Lambda: **use `std::function` as the type but declare it with a `lambda function`**
   - Inheritance: **do not use inheritance** except for interfaces. Use composition over inheritance instead
@@ -25,7 +28,7 @@ Rules that describe the way to implement.
   - Files: **only one class per file, except for header-only libraries**
   - Libraries:
     - if possible, **implement as header-only library**
-    - **split declarations and implementations**, place all declarations at first. No split for templated classes.
+    - **split declarations and implementations**, place all declarations at first. No split for templated classes
 - Headers
   - Header inclusion: **no forward declaration**
   - Header guard: `#pragma once`
@@ -94,7 +97,7 @@ Rules that describe the way to name.
   - File name: **same as declared/defined class**, SnakeCase without leading `E_` for enum
 - Headers
   - Extension: `.h` if associated with a `.cpp` file, else `.hpp`
-  - Content: `.h` files only contain declarations, `.hpp` files contain both declarations and definitions.
+  - Content: `.h` files only contain declarations, `.hpp` files contain both declarations and definitions
 - Sources
   - Extension: `.cpp`
 - Variables
